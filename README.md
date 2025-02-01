@@ -1,28 +1,133 @@
-Expense Tracker Application
-Welcome to the Expense Tracker Application! This application helps you manage your expenses, track your spending habits, and gain insights into your financial behavior. Built with a modern tech stack, this app ensures a seamless user experience while keeping your data secure.
+# 📊 Mini Expense Tracker
 
-Approach Taken
-1. User-Centric Design
-The app is designed with a focus on simplicity and usability.
+An intelligent expense tracker that helps you manage expenses efficiently with insights into your spending patterns. Built with **ReactJS (Frontend), Node.js/Python (Backend), and MongoDB/PostgreSQL (Database)**, this application ensures a smooth user experience with JWT authentication and real-time expense insights.
 
-Key features like expense management, spending insights, and authentication are easily accessible.
+---
+## 🚀 Approach Taken
+### **1️⃣ Authentication & Security**
+- Implemented **JWT-based authentication** with HTTP-only cookies for security.
+- Protected routes using middleware to ensure only authorized users can manage expenses.
 
-2. Secure Authentication
-JSON Web Tokens (JWT) are used for secure user authentication.
+### **2️⃣ Expense Management**
+- Users can **add, update, delete, and view expenses** with category-wise filtering and pagination.
+- The backend efficiently handles large datasets and supports structured API responses.
 
-Users must log in to access the app, ensuring that their data remains private.
+### **3️⃣ Intelligent Spending Insights**
+- Analyzed total spending per category using aggregation queries.
+- Visualized data using **Recharts/MUI X Charts**, enabling users to understand their financial habits.
+- Optimized backend queries for **scalability and performance.**
 
-3. Modular Backend
-The backend is built using Express.js and follows a modular structure.
+---
+## 🔐 JWT Implementation
+**Authentication Flow:**
+1. **User Signup/Login** → Backend generates a **JWT token**.
+2. Token is stored in an **HTTP-only cookie** (prevents XSS attacks).
+3. Protected API routes validate the token before processing requests.
+4. On logout, the cookie is cleared, ending the session.
 
-Each feature (e.g., expense management, spending insights) is implemented as a separate route for better maintainability.
+**Example JWT Middleware:**
+```javascript
+const verifyToken = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) return res.status(401).json({ message: "Unauthorized!" });
+    
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) return res.status(403).json({ message: "Invalid token!" });
+        req.user = decoded;
+        next();
+    });
+};
+```
 
-4. Real-Time Insights
-The app provides real-time spending insights, including:
+---
+## 💰 Expense Management API
+### **1️⃣ Add Expense**
+```http
+POST /expense/add
+```
+#### **Request Body:**
+```json
+{
+    "amount": 150,
+    "category": "Food",
+    "date": "2024-02-01",
+    "description": "Lunch with friends"
+}
+```
+#### **Response:**
+```json
+{
+    "message": "Expense added successfully!",
+    "expense": { "id": "123abc", "amount": 150, "category": "Food" }
+}
+```
 
-Total spending per category.
+### **2️⃣ Get Expenses (Paginated & Filterable)**
+```http
+GET /expense/view?page=1&category=Food
+```
+#### **Response:**
+```json
+{
+    "expenses": [{ "id": "123abc", "amount": 150, "category": "Food" }],
+    "total": 10,
+    "page": 1
+}
+```
 
-Percentage distribution of expenses across categories.
+### **3️⃣ Update Expense**
+```http
+PUT /expense/update/:id
+```
+#### **Request Body:**
+```json
+{
+    "amount": 180,
+    "category": "Dining"
+}
+```
 
-5. Responsive Frontend
-The frontend is built using React and Material-UI, ensuring a responsive and visually appealing interface.
+### **4️⃣ Delete Expense**
+```http
+DELETE /expense/delete/:id
+```
+
+---
+## 📈 Spending Insights API
+### **1️⃣ Get Spending Breakdown**
+```http
+GET /expense/insights
+```
+#### **Response:**
+```json
+{
+    "totalSpending": 1200,
+    "categoryBreakdown": [
+        { "category": "Food", "amount": 450, "percentage": 37.5 },
+        { "category": "Transport", "amount": 300, "percentage": 25.0 }
+    ]
+}
+```
+### **2️⃣ Graphical Visualization**
+- **Pie Chart**: Category-wise distribution.
+- **Bar Chart**: Monthly spending trends.
+
+---
+## 🛠 Tech Stack
+- **Frontend**: ReactJS, MUI, Recharts/MUI X Charts
+- **Backend**: Node.js/Express (or Python/FastAPI)
+- **Database**: MongoDB (Mongoose) / PostgreSQL (Sequelize)
+- **Auth**: JWT with HTTP-only cookies
+
+---
+## 🌍 Deployment
+- **Frontend**: Vercel / Netlify
+- **Backend**: AWS / Render / Heroku
+- **Database**: MongoDB Atlas / PostgreSQL
+
+---
+## 🎯 Conclusion
+This Mini Expense Tracker provides a secure, intuitive, and insightful way to manage expenses while keeping a keen eye on spending habits. 🚀💸
+
+👨‍💻 **Contributions & Suggestions Welcome!** 🎉
+
