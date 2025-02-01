@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npm install -g npm@9",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
+
   "type": "module",
   "keywords": [],
   "author": "",
