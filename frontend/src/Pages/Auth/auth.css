@@ -1,0 +1,45 @@
+.lnk{
+    text-decoration: none;
+}
+.btnStyle{
+    background-color: red;
+    border: 2px solid red;
+}
+.btnStyle:hover{
+    background-color: rgb(75, 11, 11);
+}
+
+  
+  .lining-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 200%; /* Double the width for smooth animation */
+    height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 204, 0, 0.2) 0%, /* Change to your desired color */
+      rgba(255, 204, 0, 0.2) 25%,
+      rgba(255, 255, 255, 0) 25%,
+      rgba(255, 255, 255, 0) 50%
+    );
+    animation: moveLines 3s linear infinite; /* Animation for moving lines */
+  }
+  
+  @keyframes moveLines {
+    0% {
+      transform: translateX(0); /* Start position */
+    }
+    100% {
+      transform: translateX(100%); /* End position */
+    }
+  }
+  .lining-background {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+  }
