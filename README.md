@@ -1,6 +1,6 @@
 # 📊 Mini Expense Tracker
 
-An intelligent expense tracker that helps you manage expenses efficiently with insights into your spending patterns. Built with **ReactJS (Frontend), Node.js/Python (Backend), and MongoDB/PostgreSQL (Database)**, this application ensures a smooth user experience with JWT authentication and real-time expense insights.
+An intelligent expense tracker that helps you manage expenses efficiently with insights into your spending patterns. Built with **ReactJS (Frontend), Node.js (Backend), and MongoDB (Database)**, this application ensures a smooth user experience with JWT authentication and real-time expense insights.
 
 ---
 ## 🚀 Approach Taken
