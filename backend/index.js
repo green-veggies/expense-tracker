@@ -4,11 +4,11 @@ import { mainRouter } from "./routes/index.js"
 import bodyParser from 'body-parser'
 const app=express()
 app.use(
-    cors({
-      origin: "http://localhost:3000",
-      credentials: true,
-    })
-  );
+  cors({
+    origin: ["http://localhost:3000", "https://expense-tracker-green-veggies.vercel.app"],
+    credentials: true,
+  })
+);
 app.use(express.json())
 app.use("/api/v1",mainRouter);
 app.listen(8800,()=>{
