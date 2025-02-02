@@ -42,7 +42,9 @@ import {
   Legend,
 } from "recharts";
 
-const API_URL = "http://localhost:8800/api/v1";
+const API_URL = "https://expense-tracker-backend-7xlf.onrender.com" + "/api/v1";
+console.log(API_URL)
+
 
 const Home = () => {
   const { mode, toggleTheme } = useContext(ThemeContext);
